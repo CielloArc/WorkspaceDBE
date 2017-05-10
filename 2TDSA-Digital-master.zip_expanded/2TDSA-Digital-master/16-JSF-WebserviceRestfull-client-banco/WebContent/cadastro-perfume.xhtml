@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastro de Perfumes</title>
+	<meta charset="UTF-8" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+<body>
+	<div class="container">
+		<h1>Natura</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Cadastro de Perfume</h2>
+				<h:form>
+					<h:messages styleClass="alert alert-success"/>
+					<div class="form-group">
+						<h:outputLabel value="Nome" for="nome" />
+						<h:inputText styleClass="form-control" 
+							value="#{perfumeBean.perfume.nome}" id="nome" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Aroma" for="aroma" />
+						<h:inputText styleClass="form-control" 
+							value="#{perfumeBean.perfume.aroma}" id="aroma" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Ml" for="ml" />
+						<h:inputText styleClass="form-control"
+							value="#{perfumeBean.perfume.ml}" id="ml" />
+					</div>
+					<div class="form-group">
+						<h:commandButton action="#{perfumeBean.cadastrar()}"
+							styleClass="btn btn-primary" value="Cadastrar" />
+					</div>
+				</h:form>
+			</div>
+			<div class="col-md-6">
+				<h2>Perfumes Disponíveis</h2>
+				<h:dataTable styleClass="table table-striped" value="#{perfumeBean.lista}"
+					var="perfume">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+							#{perfume.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Aroma</f:facet>
+						#{perfume.aroma}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Ml</f:facet>
+						#{perfume.ml}
+					</h:column>
+				</h:dataTable>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+

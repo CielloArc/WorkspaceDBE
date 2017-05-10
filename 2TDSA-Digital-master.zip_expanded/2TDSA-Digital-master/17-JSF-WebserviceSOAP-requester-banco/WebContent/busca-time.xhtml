@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Busca de Time</h1>
+				<h:form>
+					<div class="form-group">
+						<h:outputLabel value="Código" for="codigo" />
+						<h:inputText styleClass="form-control"
+							value="#{buscaTimeBean.codigo}" id="codigo" />
+					</div>
+					<div class="form-group">
+						<h:commandButton styleClass="btn btn-primary"
+							action="#{buscaTimeBean.buscar()}" value="Buscar" />
+					</div>
+				</h:form>
+			</div>
+			<div class="col-md-6">
+				<h2>Resposta</h2>
+				<h:outputText value="#{buscaTimeBean.time.nome}" />
+				<br />
+				<h:outputText value="#{buscaTimeBean.time.turma}" />
+				<br />
+				<h:outputText value="#{buscaTimeBean.time.titulos}" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
+
+
+
