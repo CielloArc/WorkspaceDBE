@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h2>Lista de Consultores</h2>
+		<h:form styleClass="form form-inline">
+			<h:outputLabel value="Buscar por nome: " for="buscaNome" />
+			<h:inputText for="#{listaConsultorBean.nomeBusca}" id="buscaNome"
+				styleClass="form-control" />
+			<h:commandButton action="#{listaConsultorBean.buscar()}"
+				value="Buscar" styleClass="btn btn-primary" />
+		</h:form>
+		<h:messages styleClass="alert alert-success" />
+		<h:dataTable value="#{listaConsultorBean.lista}" var="consultor"
+			styleClass="table table-striped">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+					#{consultor.nome}
+				</h:column>
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+					#{consultor.cpf}
+				</h:column>
+			<h:column>
+				<f:facet name="header">Telefone</f:facet>
+					#{consultor.telefone}
+				</h:column>
+			<h:column>
+				<f:facet name="header">Data Admissão</f:facet>
+				<h:outputText value="#{consultor.dataAdmissao.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<h:form>
+					<h:commandButton styleClass="btn btn-primary btn-sm"
+						value="Alterar" action="cadastro-consultor">
+						<f:setPropertyActionListener value="#{consultor}"
+							target="#{consultorBean.consultor}" />
+					</h:commandButton>
+					<h:commandButton styleClass="btn btn-danger btn-sm"
+						style="margin-left:10px;"
+						action="#{listaConsultorBean.excluir(consultor.codigo)}"
+						value="Excluir" />
+				</h:form>
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
