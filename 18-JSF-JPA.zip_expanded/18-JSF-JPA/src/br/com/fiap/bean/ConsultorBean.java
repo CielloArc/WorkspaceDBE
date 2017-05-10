@@ -5,7 +5,9 @@ import java.util.Calendar;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.fiap.bo.ConsultorBO;
 import br.com.fiap.entity.Consultor;
@@ -45,6 +47,15 @@ public class ConsultorBean {
 		FacesContext.getCurrentInstance().getExternalContext()
 									.getFlash().setKeepMessages(true);
 		return "lista-consultor?faces-redirect=true"; //nome da página
+	}
+	
+	
+	public void validarCPF(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+		String cpf = value.toString();
+		
+		if(!cpf.contains(".")){
+			throw new ValidatorException(new FacesMessage("CPF INVÁLIDO"));
+		}
 	}
 
 	public Consultor getConsultor() {

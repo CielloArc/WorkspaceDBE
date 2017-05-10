@@ -6,22 +6,22 @@
 
 <ui:composition template="_template.xhtml">
 	<ui:define name="conteudo">
-		<h2>#{consultorBean.consultor.codigo != 0 ?
-			"Atualização":"Cadastro" } de Consultor</h2>
+	<f:loadBundle basename="br.com.fiap.bundle.consultor" var="bundle"/>
+		<h2>#{consultorBean.consultor.codigo != 0 ? bundle.page_title_update : bundle.page_title_register}	</h2>
 
 		<h:messages styleClass="alert alert-danger" />
 
 		<h:form>
 			<h:inputHidden value="#{consultorBean.consultor.codigo}" />
 			<div class="form-group">
-				<h:outputLabel value="Nome" for="nome" />
+				<h:outputLabel value="#{bundle.lbl_name}" for="nome" />
 				<h:inputText value="#{consultorBean.consultor.nome}" id="nome"
 					styleClass="form-control" required="true"
 					requiredMessage="Nome é obrigatório" />
 				<h:message for="nome" styleClass="text-danger" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel value="CPF" for="cpf" />
+				<h:outputLabel value="#{bundle.lbl_cpf}" for="cpf" />
 				<h:inputText value="#{consultorBean.consultor.cpf}" id="cpf"
 					styleClass="form-control" required="true"
 					requiredMessage="CPF é obrigatorio">
@@ -30,24 +30,24 @@
 				<h:message for="cpf" styleClass="text-danger" />
 			</div>
 			<div class="form-group">
-				<h:outputLabel value="Telefone" for="telefone" />
+				<h:outputLabel value="#{bundle.lbl_phone}" for="telefone" />
 				<h:inputText value="#{consultorBean.consultor.telefone}"
 					id="telefone" styleClass="form-control" required="true" />
 					<h:message for="telefone" styleClass="text-danger"/>
 			</div>
 			<div class="form-group">
-				<h:outputLabel value="Data Admissao" for="data" />
+				<h:outputLabel value="#{bundle.lbl_data}" for="data" />
 				<h:inputText id="data" styleClass="form-control"
 					value="#{consultorBean.consultor.dataAdmissao.time}" required="true">
 					<f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy" />					
 				</h:inputText>
 				<h:message for="data" styleClass="text-danger"/>
 			</div>
-			<h:commandButton action="#{consultorBean.cadastrar()}" value="Salvar"
+			<h:commandButton action="#{consultorBean.cadastrar()}" value="#{bundle.btn_save}"
 				styleClass="btn btn-primary" />
 			<h:link styleClass="btn btn-default"
 				rendered="#{consultorBean.consultor.codigo != 0}"
-				style="margin-left:10px" outcome="lista-consultor">Voltar</h:link>
+				style="margin-left:10px" outcome="lista-consultor">#{bundle.btn_return}</h:link>
 		</h:form>
 	</ui:define>
 </ui:composition>
