@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="mui.min.css" />
+</h:head>
+<body>
+	<div class="mui-container-fluid">
+		<h1>Produtos</h1>
+		<h:form styleClass="mui-form">
+			<h:messages styleClass="" />
+			<div class="mui-textfield">
+				<h:outputLabel value="Descricao" for="prodDesc" />
+				<h:inputText value="#{produtoBean.produto.descricao}" id="prodDesc" />
+			</div>
+			<div class="mui-textfield">
+				<h:outputLabel value="Quantidade" for="prodQnt" />
+				<h:inputText value="#{produtoBean.produto.quantidade}" id="prodQnt" />
+			</div>
+			<div class="mui-textfield">
+				<h:outputLabel value="Valor" for="prodValor" />
+				<h:inputText value="#{produtoBean.produto.valor}" id="prodValor" />
+			</div>
+			<h:commandButton action="#{produtoBean.cadastrar}" value="Cadastrar"
+				styleClass="mui-btn mui-btn--raised mui-btn--primary" />
+		</h:form>
+		<br></br>
+		<div class="mui-divider"></div>
+		<br></br>
+		<h2>Produtos Cadastrados</h2>
+		<h:dataTable value="#{produtoBean.lista}" var="p" styleClass="mui-table mui-table--bordered">
+			<h:column>
+				<f:facet name="header">Descricao</f:facet>
+			#{p.descricao}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>
+			#{p.quantidade}
+		</h:column>
+			<h:column>
+				<f:facet name="header">Valor</f:facet>				
+			#{p.valor}
+		</h:column>
+		</h:dataTable>
+	</div>
+
+	<h:outputScript library="js" name="mui.min.js" />
+
+</body>
+</html>
